@@ -2,6 +2,8 @@ language: go
 go:
   - 1.9.x
 
+on:
+ tags: true
 branches:
   only:
     - master
@@ -13,8 +15,4 @@ before_install:
   - docker --version
 
 script:
-  - make prepare
-  - mv $GOPATH/src/github.com/docker/docker/vendor/github.com/docker/go-connections/nat $GOPATH/src/github.com/docker/docker/vendor/github.com/docker/go-connections/nonat
-  - make
-  - sudo ./cn version
-  - sudo make tests
+  - sudo ./travis.sh
